@@ -12,7 +12,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         now = timezone.now()
-        return Event.objects.filter(start_timestamp__gte=now).order_by("start_timestamp")[:5]
+        return Event.objects.filter(end_timestamp__gte=now).order_by("start_timestamp")[:5]
 
 
 class EventDetailView(generic.DetailView):
@@ -32,7 +32,7 @@ def add_event(request: HttpRequest):
         print(request.POST["event_start_timestamp"])
         start_timestamp = request.POST["event_start_timestamp"] # TODO Make timezone aware
         end_timestamp = request.POST["event_end_timestamp"] # TODO Make timezone aware
-        event_instance = Event(
+        event_instance = Event.objects.create(
             name=request.POST["event_name"],
             start_timestamp=start_timestamp,
             end_timestamp=end_timestamp
