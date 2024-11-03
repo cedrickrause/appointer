@@ -1,0 +1,18 @@
+<form action="{% url 'appointer:add_event' %}" method="post">
+{% csrf_token %}
+<fieldset>
+  <legend><h1>Add event</h1></legend>
+  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+  <label for="event_name">Event name:</label>
+  <input type="text" id="event_name" name="event_name"><br />
+
+  <label for="event_start_timestamp">Start timestamp:</label>
+  <input type="datetime-local" id="event_start_timestamp" name="event_start_timestamp"><br />
+
+  <label for="event_end_timestamp">End timestamp:</label>
+  <input type="datetime-local" id="event_end_timestamp" name="event_end_timestamp"><br />
+
+</fieldset>
+<input type="submit" value="Create">
+</form>

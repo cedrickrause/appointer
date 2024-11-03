@@ -1,0 +1,13 @@
+{% if upcoming_events_list %}
+    <ul>
+    {% for event in upcoming_events_list %}
+        <li><a href="{% url 'appointer:event_detail' event.id %}">{{ event.name }} @ {{ event.start_timestamp }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No events are available.</p>
+{% endif %}
+
+<button type="button">
+    <a href="{% url 'appointer:add_event' %}">Add event</a>
+</button>

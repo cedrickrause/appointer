@@ -1,0 +1,20 @@
+<form action="{% url 'appointer:signup' event.id %}" method="post">
+{% csrf_token %}
+<fieldset>
+    <legend><h1>{{ event.name }}</h1></legend>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <span>Start: {{ event.start_timestamp }}</span><br />
+    <span>End: {{ event.end_timestamp }}</span>
+
+    <ul>
+        {% for signup in event.signup_set.all %}
+            <li>{{ signup.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <input type="text" name="new_signup">
+
+</fieldset>
+<input type="submit" value="Sign up">
+</form>
