@@ -1,3 +1,7 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'appointer/style.css' %}">
+
 {% if upcoming_events_list %}
     <ul>
     {% for event in upcoming_events_list %}
