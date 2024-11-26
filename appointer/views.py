@@ -32,6 +32,14 @@ def signup(request: HttpRequest, event_id: int):
         return HttpResponseRedirect(reverse("appointer:event_detail", args=(event.id,)))
 
 
+def signout(request: HttpRequest, event_id: int, signout_id: int):
+    event = get_object_or_404(Event, pk=event_id)
+
+    signup_instance = Signup.objects.get(id=signout_id)
+    signup_instance.delete()
+    return HttpResponseRedirect(reverse("appointer:event_detail", args=(event.id,)))
+
+
 def add_event(request: HttpRequest):
     if request.method == 'POST':
         print(request.POST["event_start_timestamp"])
