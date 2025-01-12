@@ -54,3 +54,8 @@ def add_event(request: HttpRequest):
         return HttpResponseRedirect(reverse("appointer:event_detail", args=(event_instance.pk,)))
     else:
         return render(request, "appointer/add_event.html")
+
+def delete_event(request: HttpRequest, event_id: int):
+    event = get_object_or_404(Event, pk=event_id)
+    event.delete()
+    return HttpResponseRedirect(reverse("appointer:index"))

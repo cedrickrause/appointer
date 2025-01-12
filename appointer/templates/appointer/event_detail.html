@@ -16,9 +16,16 @@
             </li>
         {% endfor %}
     </ul>
+
     <form action="{% url 'appointer:signup' event.id %}" method="post">
         {% csrf_token %}
         <input type="text" name="new_signup">
         <input type="submit" value="Sign up">
     </form>
+
+    <form action="{% url 'appointer:delete_event' event.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete Event">
+    </form>
+
 </fieldset>
